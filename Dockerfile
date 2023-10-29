@@ -2,11 +2,11 @@
 FROM zshusers/zsh:latest
 
 # image metadata
-LABEL org.opencontainers.image.title="ohmyzsh"
-LABEL org.opencontainers.image.description="Oh My Zsh versioned image"
-LABEL org.opencontainers.image.url="https://github.com/ohmyzsh/docker"
+LABEL org.opencontainers.image.title="docker-deb-ohmyzsh"
+LABEL org.opencontainers.image.description="Oh My Zsh + NVM + Node 18.17.0"
+LABEL org.opencontainers.image.url="https://github.com/treckstar/docker-deb-ohmyzsh"
 LABEL org.opencontainers.image.vendor="Oh My Zsh"
-LABEL org.opencontainers.image.authors="Marc Cornellà <hello@mcornella.com>"
+LABEL org.opencontainers.image.authors="Brandon Trecki - @treckstar"
 LABEL maintainer="Marc Cornellà <hello@mcornella.com>"
 
 # set UTF-8 locale
@@ -16,7 +16,8 @@ ENV LANG=C.UTF-8
 RUN install_packages \
     ca-certificates \
     git \
-    curl
+    curl \
+    bash
 
 # specify the Oh My Zsh version string
 ARG OMZ_VERSION=master
@@ -25,3 +26,16 @@ ARG OMZ_VERSION=master
 RUN BRANCH=${OMZ_VERSION} \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/${OMZ_VERSION}/tools/install.sh)" "" \
     --unattended
+
+# RUN "omz plugin enable nvm nvim"
+
+RUN sh -c "$(curl -fsSL  https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh )" "" \
+    --unattended
+
+
+RUN echo "'source ~/.nvm/nvm.sh' > ~/.zshrc"
+
+RUN . ~/.nvm/nvm.sh
+#    nvm install 18.17.0 && \
+#    nvm use 18.17.0
+
