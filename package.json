@@ -1,0 +1,20 @@
+{
+  "name": "@treckstar/docker-deb-ohmyzsh",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Taken from ohmyzsh/docker.",
+  "main": "Dockerfile",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/treckstar/docker-deb-ohmyzsh.git"
+  },
+  "author": "Brandon Trecki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/treckstar/docker-deb-ohmyzsh/issues"
+  },
+  "homepage": "https://github.com/treckstar/docker-deb-ohmyzsh#readme"
+}
